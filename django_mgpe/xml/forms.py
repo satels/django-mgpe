@@ -18,7 +18,7 @@ class UpdatePaymentForm(forms.Form):
 
     txn_id = forms.CharField()
     txn_date = forms.CharField()
-    sum = forms.FloatField()
+    sum = forms.FloatField(min_value=0.001)
 
     def clean_txn_date(self):
         txn_date = self.cleaned_data.get('txn_date')
