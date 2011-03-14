@@ -16,7 +16,7 @@ setup(
     license = 'MIT license',
     description = u'Приложение для работы с mgpe.ru.'.encode('utf8'),
     classifiers=(
-        'Development Status :: 1 - Alpha',
+        'Development Status :: 1 - Beta',
         'Environment :: Web Environment',
         'Framework :: Django',
         'Intended Audience :: Developers',
