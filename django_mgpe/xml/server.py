@@ -1,7 +1,7 @@
 #coding:utf8
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.utils.importlib import import_module
 from django_mgpe.xml.conf import MGPE_APP
 from django_mgpe.xml.forms import PaymentCommandForm, UpdatePaymentForm
@@ -24,6 +24,15 @@ def get_mgpe_app():
 
 
 def mgpe(request):
+
+    try:
+        ip = request.META['REMOTE_ADDR']
+    except KeyError:
+        ip = request.META['HTTP_X_REAL_IP']
+
+#    if settings.MGPE_IP not in ip:
+#	raise Http404
+
     command_form = PaymentCommandForm(request.GET)
     if command_form.is_valid():
         command = command_form.cleaned_data['command']
